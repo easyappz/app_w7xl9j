@@ -25,8 +25,10 @@ DJANGO_SETTINGS_MODULE="config.settings" /opt/venv/bin/python \
     manage.py migrate --noinput
 
 if [ "$DB_INIT" = true ]; then
-    DJANGO_SETTINGS_MODULE="config.settings" DJANGO_SUPERUSER_PASSWORD=easyappzadmin /opt/venv/bin/python \
-        manage.py createsuperuser --noinput --username admin --email admin@easyappz.ru
+    DJANGO_SETTINGS_MODULE="config.settings" DJANGO_SUPERUSER_PASSWORD="$DJANGO_SUPERUSER_PASSWORD" /opt/venv/bin/python \
+        manage.py createsuperuser --noinput \
+        --username "$DJANGO_SUPERUSER_USERNAME" \
+        --email "$DJANGO_SUPERUSER_EMAIL"
 fi
 
 /bin/chown -R appuser:appuser /app/persistent
