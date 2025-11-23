@@ -13,6 +13,22 @@ class Member(models.Model):
     def __str__(self) -> str:
         return self.username
 
+    @property
+    def is_authenticated(self) -> bool:
+        """Compatibility with Django/DRF authentication system.
+
+        Any real Member instance returned by authentication backends
+        should be treated as an authenticated user.
+        """
+
+        return True
+
+    @property
+    def is_anonymous(self) -> bool:
+        """Compatibility with Django's AnonymousUser interface."""
+
+        return False
+
 
 class ChatMessage(models.Model):
     author = models.ForeignKey(
