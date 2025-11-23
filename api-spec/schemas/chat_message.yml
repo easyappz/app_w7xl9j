@@ -1,0 +1,33 @@
+ChatMessage:
+  type: object
+  description: Сообщение в групповом чате.
+  required:
+    - id
+    - author
+    - text
+    - created_at
+  properties:
+    id:
+      type: integer
+      description: Уникальный идентификатор сообщения.
+    author:
+      $ref: '../schemas/member.yml'
+    text:
+      type: string
+      description: Текст сообщения.
+    created_at:
+      type: string
+      format: date-time
+      description: Дата и время создания сообщения.
+  additionalProperties: false
+
+ChatMessageCreate:
+  type: object
+  description: Данные для создания нового сообщения в групповом чате.
+  required:
+    - text
+  properties:
+    text:
+      type: string
+      description: Текст сообщения.
+  additionalProperties: false

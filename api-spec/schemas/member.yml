@@ -1,0 +1,17 @@
+type: object
+description: Публичная информация об участнике.
+required:
+  - id
+  - username
+properties:
+  id:
+    type: integer
+    description: Уникальный идентификатор участника.
+  username:
+    type: string
+    description: Имя пользователя.
+  created_at:
+    type: string
+    format: date-time
+    description: Дата и время создания участника.
+additionalProperties: false

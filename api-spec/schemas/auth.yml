@@ -1,0 +1,42 @@
+AuthCredentials:
+  type: object
+  description: Данные для регистрации или авторизации пользователя.
+  required:
+    - username
+    - password
+  properties:
+    username:
+      type: string
+      description: Имя пользователя.
+    password:
+      type: string
+      format: password
+      description: Пароль пользователя.
+  additionalProperties: false
+
+AuthTokenResponse:
+  type: object
+  description: Ответ с токеном аутентификации и данными участника.
+  required:
+    - token
+    - member
+  properties:
+    token:
+      type: string
+      description: Токен доступа, используемый для авторизации запросов.
+    member:
+      $ref: '../schemas/member.yml'
+  additionalProperties: false
+
+AuthProfileUpdate:
+  type: object
+  description: Данные для обновления профиля текущего пользователя.
+  properties:
+    username:
+      type: string
+      description: Новое имя пользователя.
+    password:
+      type: string
+      format: password
+      description: Новый пароль пользователя.
+  additionalProperties: false

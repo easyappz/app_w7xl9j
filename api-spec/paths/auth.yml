@@ -1,0 +1,47 @@
+auth_register:
+  post:
+    summary: Регистрация пользователя
+    description: Создание нового участника и возврат токена авторизации.
+    operationId: authRegister
+    tags:
+      - Auth
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/auth.yml#/AuthCredentials'
+    responses:
+      '201':
+        description: Успешная регистрация.
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/auth.yml#/AuthTokenResponse'
+      '400':
+        description: Ошибка валидации входных данных.
+
+auth_login:
+  post:
+    summary: Авторизация пользователя
+    description: Авторизация существующего пользователя и возврат токена авторизации.
+    operationId: authLogin
+    tags:
+      - Auth
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/auth.yml#/AuthCredentials'
+    responses:
+      '200':
+        description: Успешная авторизация.
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/auth.yml#/AuthTokenResponse'
+      '400':
+        description: Ошибка валидации входных данных.
+      '401':
+        description: Неверные учетные данные.

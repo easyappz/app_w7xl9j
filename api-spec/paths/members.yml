@@ -1,0 +1,43 @@
+members_me:
+  get:
+    summary: Получение текущего пользователя
+    description: Возвращает данные текущего аутентифицированного участника.
+    operationId: getCurrentMember
+    tags:
+      - Members
+    security:
+      - TokenAuth: []
+    responses:
+      '200':
+        description: Текущий пользователь.
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/member.yml'
+      '401':
+        description: Неавторизован.
+  patch:
+    summary: Обновление профиля текущего пользователя
+    description: Обновляет профиль текущего аутентифицированного участника.
+    operationId: updateCurrentMember
+    tags:
+      - Members
+    security:
+      - TokenAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/auth.yml#/AuthProfileUpdate'
+    responses:
+      '200':
+        description: Обновленный профиль пользователя.
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/member.yml'
+      '400':
+        description: Ошибка валидации входных данных.
+      '401':
+        description: Неавторизован.

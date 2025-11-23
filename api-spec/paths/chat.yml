@@ -1,0 +1,45 @@
+chat_messages:
+  get:
+    summary: Получение списка сообщений группового чата
+    description: Возвращает список сообщений в групповом чате.
+    operationId: listChatMessages
+    tags:
+      - Chat
+    security:
+      - TokenAuth: []
+    responses:
+      '200':
+        description: Список сообщений группового чата.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../schemas/chat_message.yml#/ChatMessage'
+      '401':
+        description: Неавторизован.
+  post:
+    summary: Отправка сообщения в групповой чат
+    description: Создает новое сообщение в групповом чате.
+    operationId: createChatMessage
+    tags:
+      - Chat
+    security:
+      - TokenAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/chat_message.yml#/ChatMessageCreate'
+    responses:
+      '201':
+        description: Сообщение успешно создано.
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/chat_message.yml#/ChatMessage'
+      '400':
+        description: Ошибка валидации входных данных.
+      '401':
+        description: Неавторизован.
